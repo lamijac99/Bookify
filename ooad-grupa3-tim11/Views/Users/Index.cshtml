@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@inject RoleManager<IdentityRole> RoleManager
+@inject UserManager<Microsoft.AspNetCore.Identity.IdentityUser> UserManager
+
+<h1>Users List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            var roles = await UserManager.GetRolesAsync(user);
+
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName.Split('@')[0]</td>
+                <td>@user.Email</td>
+                <td>
+                    @foreach (var role in roles)
+                    {
+                        <span class="badge badge-primary">@role</span>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+                    {
+                        <form asp-action="Delete" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                        <form asp-action="ChangeRole" method="post" style="display:inline-block;">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <select name="roleName" class="form-control" style="display:inline-block; width:auto;">
+                                @foreach (var role in RoleManager.Roles)
+                                {
+                                    <option value="@role.Name">@role.Name</option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-primary">Change Role</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* Add custom CSS to ensure text color is black *@
+<style>
+    .badge-primary {
+        color: #000 !important; /* Set text color to black */
+    }
+</style>

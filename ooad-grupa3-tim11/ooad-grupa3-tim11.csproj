@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-ooad_grupa3_tim11-e014b98c-6a93-449f-a1d0-6e9f04816a1f</UserSecretsId>
+    <RootNamespace>ooad_grupa3_tim11</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include=".vs\ooad-grupa3-tim11.csproj.dtbcache.json" />
+    <Content Include=".vs\ooad-grupa3-tim11\v17\DocumentLayout.json" />
+    <Content Include=".vs\ooad-grupa3-tim11\v17\HierarchyCache.v1.txt" />
+    <Content Include=".vs\VSWorkspaceState.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".vs\ooad-grupa3-tim11\config\applicationhost.config" />
+    <None Include=".vs\ooad-grupa3-tim11\DesignTimeBuild\.dtbcache.v2" />
+    <None Include=".vs\ooad-grupa3-tim11\FileContentIndex\1c7d56a0-889d-466e-82a5-13d5b0f76d17.vsidx" />
+    <None Include=".vs\ooad-grupa3-tim11\FileContentIndex\479d4547-018e-46f3-a13a-81298a2a4afb.vsidx" />
+    <None Include=".vs\ooad-grupa3-tim11\FileContentIndex\6b5b3cdd-0b2f-48f6-8abc-b012e157d6e8.vsidx" />
+    <None Include=".vs\ooad-grupa3-tim11\FileContentIndex\6c2d4900-7c14-434f-9b62-9e93a329d659.vsidx" />
+    <None Include=".vs\ooad-grupa3-tim11\FileContentIndex\df487db0-b9d8-45c2-9e88-2d942995af75.vsidx" />
+    <None Include=".vs\ooad-grupa3-tim11\v17\.futdcache.v2" />
+    <None Include=".vs\ooad-grupa3-tim11\v17\.suo" />
+    <None Include=".vs\ooad-grupa3-tim11\v17\.wsuo" />
+    <None Include=".vs\ProjectEvaluation\ooad-grupa3-tim11.metadata.v7.bin" />
+    <None Include=".vs\ProjectEvaluation\ooad-grupa3-tim11.metadata.v8.bin" />
+    <None Include=".vs\ProjectEvaluation\ooad-grupa3-tim11.projects.v7.bin" />
+    <None Include=".vs\ProjectEvaluation\ooad-grupa3-tim11.projects.v8.bin" />
+    <None Include=".vs\ProjectEvaluation\ooad-grupa3-tim11.strings.v8.bin" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\UA\ooad-grupa3-tim11\CachedSettings.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>

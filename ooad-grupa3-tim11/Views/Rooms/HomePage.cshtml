@@ -1,0 +1,72 @@
+﻿<div class="text-center">
+    <h1 class="display-4">Rooms</h1>
+</div>
+
+<form method="get" action="@Url.Action("HomePage")">
+    <div class="form-group">
+        <input type="text" name="searchString" value="@Context.Request.Query["searchString"]" class="form-control" placeholder="Search for rooms or hotels" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<div class="container mt-4">
+    <!-- Filter form -->
+    <form method="get" action="@Url.Action("HomePage")">
+        <div class="row">
+            <!-- City filter -->
+            <div class="col-md-4 mb-3">
+                <label for="cityId">City</label>
+                <select class="form-control" id="cityId" name="cityId">
+                    <option value="">All Cities</option>
+                    @foreach (var city in Model.Item1.Cities)
+                    {
+                        <option value="@city.LocationId">@city.Name</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Price range filter -->
+            <div class="col-md-4 mb-3">
+                <label for="minPrice">Min Price</label>
+                <input type="number" class="form-control" id="minPrice" name="minPrice" min="@Model.Item1.MinPrice" value="@Model.Item1.MinPrice" />
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="maxPrice">Max Price</label>
+                <input type="number" class="form-control" id="maxPrice" name="maxPrice" min="@Model.Item1.MinPrice" max="@Model.Item1.MaxPrice" value="@Model.Item1.MaxPrice" />
+            </div>
+
+            <!-- Accommodation type filter -->
+            <div class="col-md-4 mb-3">
+                <label for="accommodationType">Accommodation Type</label>
+                <select class="form-control" id="accommodationType" name="accommodationType">
+                    <option value="">All Accommodation Types</option>
+                    @foreach (AccommodationEnum type in Enum.GetValues(typeof(AccommodationEnum)))
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
+    </form>
+</div>
+
+<div class="row">
+    @foreach (var item in Model.Item2)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@item.Picture" class="card-img-top" alt="Room Picture">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Hotel.Name</h5>
+                    <p class="card-text">Accommodation Type: @item.AccommodationType</p>
+                    <a href="@Url.Action("Details", "Rooms", new { id = item.RoomId })" class="btn btn-primary">Details</a>
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Manager") || User.IsInRole("Korisnik")){
+                    <a href="@Url.Action("Create", "Reservations", new { roomId = item.RoomId })" class="btn btn-success">Make Reservation</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

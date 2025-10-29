@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .hero-section {
+        background-image: url("/pictures/travel.jpg"); /* Ensure correct path */
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0; /* Adjust padding as needed */
+        position: relative;
+        min-height: 100vh; /* Ensure section is tall enough to see the background */
+        color: white; /* Ensure text is visible over the background */
+    }
+
+    .beige-square {
+        background-color: rgba(255, 165, 0, 0.6);
+        width: 80%; /* Adjust width as needed */
+        max-width: 600px; /* Adjust max-width as needed */
+        margin: 0 auto; /* Center horizontally */
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        z-index: 1; /* Ensure text is above background */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2; /* Ensure text is above background */
+    }
+</style>
+
+<div class="hero-section">
+    <div class="container">
+        <div class="beige-square">
+            <div class="hero-content text-center">
+                <h1 class="display-4">Welcome</h1>
+                <p>Bookify: Your all-in-one booking companion. Discover, book, and manage appointments effortlessly with our intuitive app.</p>
+            </div>
+        </div>
+    </div>
+</div>

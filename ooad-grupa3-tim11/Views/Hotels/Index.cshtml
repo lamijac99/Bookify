@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ooad_grupa3_tim11.Models.Hotel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <!-- Your existing HTML code -->
+
+    <div style="margin-top: 2%; margin-bottom: 2%">
+        <div id="myMap" style="position: relative; width: 100%; height: 600px;"></div>
+    </div>
+
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+
+    <script type='text/javascript'>
+        function GetMap() {
+            // Coordinates for Bosnia and Herzegovina bounding box
+            var minLat = 42.5555; // Approximate southern boundary
+            var maxLat = 45.2391; // Approximate northern boundary
+            var minLon = 15.7500; // Approximate western boundary
+            var maxLon = 19.6093; // Approximate eastern boundary
+
+            // Calculate center and zoom level to fit Bosnia and Herzegovina
+            var centerLat = (minLat + maxLat) / 2;
+            var centerLon = (minLon + maxLon) / 2;
+
+            var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: 'AiSfm6FVs06hvGaDnqR0tH6GS2xfH_PL39btQdOHkRprpsu1PgwV8oP_WMQC5nQB',
+                center: new Microsoft.Maps.Location(centerLat, centerLon),
+                mapTypeId: Microsoft.Maps.MapTypeId.road,
+                zoom: 8
+            });
+
+            // Add pushpins for each hotel
+        @foreach (var item in Model)
+        {
+            <text>
+                                var location = new Microsoft.Maps.Location(@item.Location.XCoordinates, @item.Location.YCoordinates);
+                var pin = new Microsoft.Maps.Pushpin(location, {
+                    title: '@item.Name',
+                    subTitle: ' @item.Category'
+                });
+                map.entities.push(pin);
+            </text>
+        }
+                }
+    </script>
+</div>

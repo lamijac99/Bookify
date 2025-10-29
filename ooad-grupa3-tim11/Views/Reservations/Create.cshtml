@@ -1,0 +1,95 @@
+﻿@model ooad_grupa3_tim11.Models.Reservation
+
+@{
+    ViewData["Title"] = "Create";
+    var selectedRoom = ViewBag.SelectedRoom as ooad_grupa3_tim11.Models.Room;
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+<h1>Create Reservation</h1>
+<h4 class="mb-3">Reservation Details</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" style="margin-left: 100px;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="StartDate" class="control-label">Start Date</label>
+                    <input asp-for="StartDate" class="form-control" value="" style="max-width: 300px;" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="EndDate" class="control-label">End Date</label>
+                    <input asp-for="EndDate" class="form-control" value="" style="max-width: 300px;" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+        
+
+            <div class="form-group mb-3">
+                <label class="control-label">Number of People</label>
+                <div class="d-flex justify-content-center">
+                    <div class="input-group">
+                        <button type="button" class="btn btn-outline-secondary" id="decrementButton">-</button>
+                        <input type="number" id="numberOfPeople" class="form-control text-center" value="1" min="1" style="max-width: 50px;" />
+                        <button type="button" class="btn btn-outline-secondary" id="incrementButton">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="RoomId" /> 
+                <input type="submit" value="Create" class="btn btn-primary" style="background-color: darkorange;" />
+            </div>
+
+
+        </form>
+    </div>
+    <div class="col-md-5">
+        @if (selectedRoom != null)
+        {
+            <p><strong>Description:</strong> @selectedRoom.Description</p>
+            <p><strong>Accommodation Type:</strong> @selectedRoom.AccommodationType</p>
+            <p><strong>Price:</strong> @selectedRoom.Price $</p>
+            <img src="@selectedRoom.Picture" class="img-fluid" alt="Room Picture" />
+            <p><strong>Hotel:</strong> @selectedRoom.Hotel.Name</p>
+        }
+        else
+        {
+            <p>No room information available.</p>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.getElementById("incrementButton").addEventListener("click", function () {
+            var input = document.getElementById("numberOfPeople");
+            var currentValue = parseInt(input.value);
+            input.value = currentValue + 1;
+        });
+
+        document.getElementById("decrementButton").addEventListener("click", function () {
+            var input = document.getElementById("numberOfPeople");
+            var currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        });
+    </script>
+}
